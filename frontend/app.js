@@ -30,8 +30,12 @@ const mountLikeButtom = (votes, id) => {
 (async ($) => {
     const phrasesDiv = $('.phrases');
 
-    const phrases = await fetch('https://amazingphrases.herokuapp.com/phrase').then(res => res.json());
+    const phrases = await fetch('https://amazingphrases.herokuapp.com/phrase')
+        .then(res => res.json())
+        .then(res => res.sort((a, b) => b.vote - a.vote));
+
     phrasesDiv.html('');
+
     phrases.forEach(phrase => {
         const dateCreated = new Date(phrase.date);
         phrasesDiv.append(
