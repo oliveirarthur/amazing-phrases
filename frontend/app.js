@@ -13,6 +13,9 @@
                     class: 'card-body',
                 }).append(
                     $('<span>', { html: phrase.value }),
+                    $('<div>').append(
+                        $('<small>', { html: '-' + phrase.observation }),
+                    ),
                 ),
                 $('<div>', {
                     class: 'card-footer',
