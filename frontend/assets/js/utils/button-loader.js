@@ -7,9 +7,9 @@ function ButtonLoader(buttonCurrent, iconLoading) {
     this.buttonOld = buttonCurrent.clone();
     this.iconLoading = iconLoading;
 
-    this.hide = () => {
+    this.hide = (newButton) => {
         buttonCurrent.removeAttr('disabled');
-        buttonCurrent.replaceWith(this.buttonOld);
+        buttonCurrent.replaceWith(newButton || this.buttonOld);
     };
     this.show = () => {
         buttonCurrent.attr('disabled', 'disabled');

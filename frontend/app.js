@@ -1,20 +1,19 @@
 const vote = (id) => {
-    const buttonCurrent = $(`button#vote-${id}`);
-    const buttonOld     = buttonCurrent.clone(); // caso a requisição falhe, restaura o botao
-    const iconLoading   = $('<i>', { class: 'fas fa-spinner fa-pulse' });
+    const buttonLoader = new ButtonLoader($(`button#vote-${id}`));
+    console.log('com o novo button loader', buttonLoader);
 
-    buttonCurrent.html(iconLoading); // show loading icon
+    buttonLoader.show();
 
     return fetch(`https://amazingphrases.herokuapp.com/phrase/vote/${id}`, {
         method: 'PUT',
     }).then(res => {
         return res.json();
     }).then(res => {
-        const buttonNew = mountLikeButtom(res.vote, id);
-        buttonCurrent.replaceWith(buttonNew);
+        const newButton = mountLikeButtom(res.vote, id);
+        buttonLoader.hide(newButton);
     }).catch(err => {
-        console.error(err);
-        buttonCurrent.replaceWith(buttonOld);
+        alert('Ocorreu um erro ao gravar seu voto =/ ' + JSON.stringify(err))
+        buttonLoader.hide();
     });
 };
 
