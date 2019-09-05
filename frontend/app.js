@@ -17,12 +17,38 @@ const vote = (id) => {
     });
 };
 
+const deletePhrase = (id) => {
+    if (!confirm(`Tem certeza que deseja apagar a phrase #${id}?`)) {
+        return Promise.resolve();
+    }
+    return fetch(`https://amazingphrases.herokuapp.com/phrase/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => {
+        alert('Phrase excluida com sucesso!');
+        location.reload();
+    }).catch(err => {
+        alert('Ocorreu um erro ao apagar essa phrase =/ ', JSON.stringify(err, null, 4));
+    });
+}
+
 const mountLikeButtom = (votes, id) => {
     return $('<button>', {
         class  : 'btn btn-outline-primary btn-sm float-right',
         html   : `<i class="fas fa-thumbs-up"></i> ${votes}`,
         id     : `vote-${id}`,
         onclick: `vote(${id})`,
+    });
+};
+
+const mountDeleteButtom = (id) => {
+    return $('<button>', {
+        class  : 'btn btn-outline-danger btn-sm float-right mr-1',
+        html   : `<i class="fas fa-trash"></i>`,
+        id     : `delete-${id}`,
+        onclick: `deletePhrase(${id})`,
+        disabled: 'disabled',
+        hidden: ''
     });
 };
 
@@ -44,6 +70,10 @@ const mountLikeButtom = (votes, id) => {
                 $('<div>', {
                     class: 'card-body',
                 }).append(
+                    $('<small> ', {
+                        class: 'font-weight-bold mr-1',
+                        html: '#' + phrase.id,
+                    }),
                     $('<span>', { html: phrase.value }),
                     $('<div>').append(
                         $('<small>', { html: '-' + phrase.observation }),
@@ -53,11 +83,23 @@ const mountLikeButtom = (votes, id) => {
                     class: 'card-footer',
                 }).append(
                     $('<i>', { html: phrase.author }),
-                    $('<span>', { html: ' @ ' + dateCreated.toLocaleString() }),
+                    $('<span>', {
+                        id: phrase.id,
+                        html: ' @ ' + dateCreated.toLocaleString(),
+                    }),
                     mountLikeButtom(phrase.vote, phrase.id),
+                    mountDeleteButtom(phrase.id),
                 ),
             ),
         );
     });
 
+    $(document).on('click', '.card-footer span', function (e) {
+        const target = $(e.target);
+        target.data('clicked-times', (target.data('clicked-times') || 0) + 1);
+        if (target.data('clicked-times') > 5) {
+            const id = target.attr('id');
+            $(`#delete-${id}`).removeAttr('disabled hidden');
+        }
+    });
 })(window.jQuery);
