@@ -13,6 +13,7 @@
                 <div class="col form-group">
                     <label for="value">O que foi dito?</label>
                     <input type="text"
+                        autofocus
                         class="form-control"
                         placeholder="O que foi dito?"
                         name="value"
@@ -49,9 +50,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="submit"
+                    <button type="submit"
                         onclick="publish(event)"
                         class="btn btn-primary btn-block">
+                        Enviar
+                    </button>
                 </div>
             </div>
         </form>
@@ -73,6 +76,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
         crossorigin="anonymous"></script>
+    <script src="../assets/js/utils/button-loader.js"></script>
     <script src="./form.js"></script>
 </body>
 </html>

@@ -1,5 +1,10 @@
+const loader = new ButtonLoader(
+    $('button[type=submit]'),
+);
+
 function publish(e) {
     e.preventDefault();
+    loader.show();
 
     const body = $('form').serializeArray().reduce((acc, input) => {
         acc[input.name] = input.value;
@@ -15,11 +20,13 @@ function publish(e) {
         },
         method: 'POST',
     }).then(res => res.json())
-        .then(res => {
-            alert(`Phrase #${res.id} criada com sucesso!`);
-            location.reload();
-        })
-        .catch(err => {
-            alert('Ocorreu um erro ao cadastrar a phrase =/');
-        });
+    .then(res => {
+        alert(`Phrase #${res.id} criada com sucesso!`);
+        loader.hide()
+        location.reload();
+    })
+    .catch(err => {
+        alert('Ocorreu um erro ao cadastrar a phrase =/' + JSON.stringify(err, null, 4));
+        loader.hide()
+    });
 }
