@@ -70,7 +70,8 @@ const mountDeleteButtom = (id) => {
                 $('<div>', {
                     class: 'card-body',
                 }).append(
-                    $('<small> ', {
+                    $('<a> ', {
+                        href: `./show/index.html?id=${phrase.id}`,
                         class: 'font-weight-bold mr-1',
                         html: '#' + phrase.id,
                     }),

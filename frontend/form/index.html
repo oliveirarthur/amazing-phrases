@@ -7,57 +7,67 @@
     <title>Amazing Phrases - Cadastro!</title>
 </head>
 <body>
-    <div class="container">
-        <form>
-            <div class="row">
-                <div class="col form-group">
-                    <label for="value">O que foi dito?</label>
-                    <input type="text"
-                        autofocus
-                        class="form-control"
-                        placeholder="O que foi dito?"
-                        name="value"
-                        id="value">
-                </div>
+    <div class="container ">
+        <div class="row min-vh-100 align-items-center">
+            <div class="col">
+                <form>
+                    <div class="card">
+                        <div class="card-header">
+                            Cadastrar phrase
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col form-group">
+                                    <label for="value">O que foi dito?</label>
+                                    <input type="text"
+                                        autofocus
+                                        class="form-control"
+                                        placeholder="O que foi dito?"
+                                        name="value"
+                                        id="value">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group">
+                                    <label for="author">Quem disse?</label>
+                                    <input type="text"
+                                        class="form-control"
+                                        placeholder="Quem disse?"
+                                        name="author"
+                                        id="author">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="date">Quando?</label>
+                                    <input type="date"
+                                        class="form-control"
+                                        placeholder="Quando?"
+                                        name="date"
+                                        id="date">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group">
+                                    <label for="observation">Observações</label>
+                                    <textarea
+                                        class="form-control"
+                                        placeholder="Observações"
+                                        name="observation"
+                                        id="observation"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit"
+                                onclick="publish(event)"
+                                class="btn btn-outline-primary btn-block">
+                                Enviar
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="row">
-                <div class="col form-group">
-                    <label for="author">Quem disse?</label>
-                    <input type="text"
-                        class="form-control"
-                        placeholder="Quem disse?"
-                        name="author"
-                        id="author">
-                </div>
-                <div class="col form-group">
-                    <label for="date">Quando?</label>
-                    <input type="date"
-                        class="form-control"
-                        placeholder="Quando?"
-                        name="date"
-                        id="date">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col form-group">
-                    <label for="observation">Observações</label>
-                    <textarea
-                        class="form-control"
-                        placeholder="Observações"
-                        name="observation"
-                        id="observation"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button type="submit"
-                        onclick="publish(event)"
-                        class="btn btn-primary btn-block">
-                        Enviar
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 
     <link rel="stylesheet"
@@ -76,6 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
         crossorigin="anonymous"></script>
+
     <script src="../assets/js/utils/button-loader.js"></script>
     <script src="./form.js"></script>
 </body>
