@@ -23,4 +23,5 @@
     Object.keys(phrase).forEach(key => {
         $('#' + key).html(phrase[key]);
     });
+    $('.like').html(mountLikeButtom(phrase.vote, phrase.id))
 })(window.jQuery);
